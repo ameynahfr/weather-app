@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import CityWeather from './components/CityWeather';
+import Navbar from './components/Navbar';
+import './App.css'; 
 
 function App() {
+  const [locationQuery, setLocationQuery] = useState('');
+
+  const handleLocationQueryChange = (query) => {
+    setLocationQuery(query);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar onLocationQueryChange={handleLocationQueryChange} />
+      <CityWeather locationQuery={locationQuery} />
+    </>
   );
 }
 
