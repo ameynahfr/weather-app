@@ -28,7 +28,7 @@ const CityWeather = ({ locationQuery }) => {
 
     useEffect(() => {
         
-        const apiUrl = `http://api.weatherstack.com/current?access_key=${apiKey}&query=${locationQuery}`;
+        const apiUrl = `https://api.weatherstack.com/current?access_key=${apiKey}&query=${locationQuery}`;
 
         fetch(apiUrl)
             .then(response => response.json())
