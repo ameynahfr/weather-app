@@ -17,14 +17,14 @@ import uv from '../images/sun.svg';
 
 const CityWeather = ({ locationQuery }) => {
     const apiKey = 'b25e13bec6a8b7277bccd0d19b837736';
-    const [city, setCity] = useState('');
-    const [weatherDescription, setWeatherDescription] = useState('');
-    const [temperature, setTemperature] = useState('');
-    const [rainProbability, setRainProbability] = useState('');
-    const [uvIndex, setUvIndex] = useState('');
-    const [wind, setWind] = useState('');
-    const [feelslike, setFeelsLike] = useState('');
-    const [icon, setIcon] = useState('');
+    const [city, setCity] = useState('Islamabad');
+    const [weatherDescription, setWeatherDescription] = useState('Cloudy');
+    const [temperature, setTemperature] = useState('20');
+    const [rainProbability, setRainProbability] = useState('30%');
+    const [uvIndex, setUvIndex] = useState('2');
+    const [wind, setWind] = useState('50');
+    const [feelslike, setFeelsLike] = useState('17');
+    const [icon, setIcon] = useState(cloud);
 
     useEffect(() => {
         
