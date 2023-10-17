@@ -13,74 +13,83 @@ import snow from '../images/snowstorm.png'
 import tempfeels from '../images/thermometer.svg';
 import windSpeed from '../images/wind.svg';
 import rainchance from '../images/droplet.svg';
-import uv from '../images/sun.svg';
+import humid from '../images/humidity.svg'
 
 const CityWeather = ({ locationQuery }) => {
-    const apiKey = 'b25e13bec6a8b7277bccd0d19b837736';
+    const apiKey = 'b4e73de6e1421ab41c4a09a620b06296';
     const [city, setCity] = useState('Islamabad');
     const [weatherDescription, setWeatherDescription] = useState('Cloudy');
     const [temperature, setTemperature] = useState('20');
     const [rainProbability, setRainProbability] = useState('30%');
-    const [uvIndex, setUvIndex] = useState('2');
+    const [humidity, setHumidity] = useState('2');
     const [wind, setWind] = useState('50');
     const [feelslike, setFeelsLike] = useState('17');
     const [icon, setIcon] = useState(cloud);
 
     useEffect(() => {
-        
-        const apiUrl = `https://api.weatherstack.com/current?access_key=${apiKey}&query=${locationQuery}`;
-
+        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${locationQuery}&appid=${apiKey}&units=metric`;
+    
         fetch(apiUrl)
             .then(response => response.json())
             .then(data => {
                 console.log(data);
-                const cityName = data.location.name;
-                const currentWeather = data.current.weather_descriptions[0];
-                const currentTemperature = data.current.temperature;
-                const precipProbability = (data.current.precip * 100).toFixed(0) + '%';
-                const uv = data.current.uv_index;
-                const currentWind = data.current.wind_speed;
-                const temperatureFeels = data.current.feelslike;
-
+    
+                const cityName = data.name;
+                const currentWeather = data.weather[0].description;
+                const currentTemperature = data.main.temp;
+                const precipProbability = data.weather[0].main === 'Rain' ? '100%' : '0%'; // Adjust this as needed
+                const currentWind = data.wind.speed;
+                const temperatureFeels = data.main.feels_like;
+                const currentHumidity = data.main.humidity
+    
                 setCity(cityName);
                 setWeatherDescription(currentWeather);
                 setTemperature(currentTemperature);
                 setRainProbability(precipProbability);
-                setUvIndex(uv);
                 setWind(currentWind);
                 setFeelsLike(temperatureFeels);
-
+                setHumidity(currentHumidity)
+    
                 // Map weather descriptions to corresponding icons
                 const weatherIcons = {
-                    'rain': rain,
-                    'thunder': thunder,
-                    'sunny': sun,
-                    'storm': storm,
-                    'light rain': lightRain,
-                    'cloudy': cloud,
-                    'windy': windy,
-                    'smoke': smoke,
-                    'haze': haze,
-                    'snow' : snow,
-                    'clear': moon
+                    'Rain': rain,
+                    'Thunderstorm': thunder,
+                    'Sunny': sun,
+                    'Clear': moon,
+                    'Smoke': smoke, 
+                    'Haze': haze,
+                    'Clouds': cloud,
+                    'Clear sky': moon, 
+                    'Windy': windy, 
+                    'Storm': storm,
+                    'Light rain': lightRain, 
+                    'snow storm' : snow
                 };
-
-                // Function to determine the icon based on keywords in the weather description
-                const getIcon = (weatherDescription) => {
-                    for (const keyword in weatherIcons) {
-                        if (weatherDescription.toLowerCase().includes(keyword)) {
-                            return weatherIcons[keyword];
+                
+                // Function to determine the icon based on the weather description
+                const getIcon = (weatherData) => {
+                    if (weatherData.length > 0) {
+                        const description = weatherData[0].description.toLowerCase();
+                        for (const key in weatherIcons) {
+                            if (description.includes(key.toLowerCase())) {
+                                return weatherIcons[key];
+                            }
                         }
                     }
-                    return sun;
+                    return sun; 
                 };
-
-                setIcon(getIcon(currentWeather));
+                
+                setIcon(getIcon(data.weather));
+                
+                
+                
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
             });
     }, [locationQuery]);
+    
+    
 
   
     return (
@@ -106,7 +115,7 @@ const CityWeather = ({ locationQuery }) => {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <p className="card-text"><img src={rainchance} alt="rain chance" /> Chances of Rain: {rainProbability}</p>
-                                        <p className="card-text"><img src={uv} alt="uv index" /> UV Index: {uvIndex}</p>
+                                        <p className="card-text"><img src={humid} alt="humidity" /> Humidity: {humidity}%</p>
                                     </div>
                                     <div className="col-md-6">
                                         <p className="card-text"><img src={windSpeed} alt="wind speed" /> Wind Speed: {wind} km/h</p>
