@@ -9,13 +9,15 @@
 body {
   font-family: 'Sen', sans-serif;
   background-color: rgb(207, 218, 227);
+  height: 100vh;
 }
 
 .city-weather {
+  padding: 15px;
+  max-width: 750px;
   font-weight: 800;
-  margin: 300px;
-  margin-top: 40px;
-  margin-bottom: 0px;
+  margin: 0 auto;
+  margin-top: 20px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -26,15 +28,11 @@ body {
   flex: 4;
   font-weight: 800;
   font-size: 50px;
-  display: flex;
   justify-content: center;
-  flex-direction: column;
 }
 
 .city-image {
   flex: 1;
-  max-width: 150px;
   display: flex;
   justify-content: center;
-  flex-direction: column;
 }
