@@ -163,7 +163,7 @@ const CityWeather = ({ locationQuery }) => {
                     />
                 </div>
             </div>
-            <div className="container mt-5" style={{ maxWidth: '800px' }}>
+            <div className="container mt-5">
                 <div className="card p-4" style={{ backgroundColor: 'rgb(159, 179, 194)' }}>
                     <div className="row no-gutters">
                         <div className="col-md-12">

@@ -3,7 +3,7 @@ import logo from '../images/logo.png'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Navbar = ({ onLocationQueryChange }) => {
-    const [searchQuery, setSearchQuery] = useState('Islamabad');
+    const [searchQuery, setSearchQuery] = useState('');
 
     const handleSearch = (e) => {
         e.preventDefault();

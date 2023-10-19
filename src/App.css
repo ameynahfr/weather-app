@@ -12,6 +12,10 @@ body {
   height: 100vh;
 }
 
+.app-container {
+  position: relative;
+}
+
 .city-weather {
   padding: 15px;
   max-width: 750px;
@@ -67,10 +71,13 @@ hr {
 
 /* Footer.css */
 .footer {
+  position: absolute;
+  bottom: -80;
   margin-top: 80px;
   box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.3);
   color: #000;
   padding: 20px 0;
+  width: 100%;
   justify-content: center;
 
 }
