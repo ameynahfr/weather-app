@@ -31,7 +31,7 @@ const CityWeather = ({ locationQuery }) => {
                 const currentWeather = data.weather[0].description;
                 const currentTemperature = Math.round(data.main.temp);
                 const currentWind = data.wind.speed;
-                const temperatureFeels = data.main.feels_like;
+                const temperatureFeels = Math.round(data.main.feels_like);
                 const currentHumidity = data.main.humidity;
                 const currentIconSelect = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
                 
