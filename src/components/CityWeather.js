@@ -3,7 +3,8 @@ import Forecast from './Forecast';
 import DailyForecast from './DailyForecast';
 import tempfeels from '../images/thermometer.svg';
 import windSpeed from '../images/wind.svg';
-import humid from '../images/humidity.svg'
+import humid from '../images/humidity.svg';
+import drop from '../images/droplet.svg';
 
 const CityWeather = ({ locationQuery }) => {
     const apiKey = 'b4e73de6e1421ab41c4a09a620b06296';
@@ -11,6 +12,7 @@ const CityWeather = ({ locationQuery }) => {
     const [weatherDescription, setWeatherDescription] = useState('');
     const [temperature, setTemperature] = useState('');
     const [humidity, setHumidity] = useState('');
+    const [pressure, setPressure] = useState('')
     const [wind, setWind] = useState('');
     const [feelslike, setFeelsLike] = useState('');
     const [currentIcon, setCurrentIcon] = useState('')
@@ -33,6 +35,7 @@ const CityWeather = ({ locationQuery }) => {
                 const currentWind = data.wind.speed;
                 const temperatureFeels = Math.round(data.main.feels_like);
                 const currentHumidity = data.main.humidity;
+                const currentPressure = data.main.pressure;
                 const currentIconSelect = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
                 
     
@@ -42,6 +45,7 @@ const CityWeather = ({ locationQuery }) => {
                 setWind(currentWind);
                 setFeelsLike(temperatureFeels);
                 setHumidity(currentHumidity);
+                setPressure(currentPressure)
                 setCurrentIcon(currentIconSelect);
     
                 // Map weather descriptions to corresponding icons
@@ -170,8 +174,8 @@ const CityWeather = ({ locationQuery }) => {
                             <div className="card-body">
                                 <div className="row">
                                     <div className="col-md-6">
-                                        <p className="card-text"><img src={humid} alt="rain chance" /> Chances of Rain: {humidity}</p>
-                                        <p className="card-text"><img src={humid} alt="humidity" /> Humidity: {humidity}%</p>
+                                        <p className="card-text"><img src={humid} alt="pressure" /> Pressure: {pressure} hPa</p>
+                                        <p className="card-text"><img src={drop} alt="humidity" /> Humidity: {humidity} %</p>
                                     </div>
                                     <div className="col-md-6">
                                         <p className="card-text"><img src={windSpeed} alt="wind speed" /> Wind Speed: {wind} km/h</p>
