@@ -36,3 +36,74 @@ body {
   display: flex;
   justify-content: center;
 }
+
+.daily-forecast {
+  background-color: rgb(159, 179, 194);
+  border-radius: 10px;
+  margin: 0 auto;
+  margin-top: 60px;
+  
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  
+
+}
+
+hr {
+  color: rgb(207, 218, 227);
+}
+
+
+
+.week {
+  margin-top: 25px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+
+/* Footer.css */
+.footer {
+  margin-top: 80px;
+  box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.3);
+  color: #000;
+  padding: 20px 0;
+  justify-content: center;
+
+}
+
+.container-footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between; /* This will align social links at the end and copyright at the start */
+  width: 100%; /* Ensure the content spans the entire footer width */
+}
+
+.copyright {
+  margin-left: 30px;
+  margin-bottom: 10px;
+}
+
+.social-links {
+  justify-content: flex-end;
+  font-size: 24px;
+}
+
+.social-links a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+  margin-right: 30px;
+}
+
+/* Add more styling as needed */

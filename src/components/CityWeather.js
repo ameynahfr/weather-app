@@ -1,31 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import Forecast from './Forecast';
-import WeeklyForecast from './WeeklyForecast';
-// import sun from '../images/sun.png';
-// import cloud from '../images/cloud.png';
-// import storm from '../images/snowstorm.png';
-// import thunder from '../images/thunder.png';
-// import rain from '../images/rainy.png';
-// import lightRain from '../images/lightrain.png';
-// import windy from '../images/wind.png';
-// import smoke from '../images/smoke.png';
-// import haze from '../images/haze.png';
-// import moon from '../images/moon.png';
-// import snow from '../images/snowstorm.png'
+import DailyForecast from './DailyForecast';
 import tempfeels from '../images/thermometer.svg';
 import windSpeed from '../images/wind.svg';
 import humid from '../images/humidity.svg'
 
 const CityWeather = ({ locationQuery }) => {
     const apiKey = 'b4e73de6e1421ab41c4a09a620b06296';
-    const [city, setCity] = useState('Islamabad');
-    const [weatherDescription, setWeatherDescription] = useState('Cloudy');
-    const [temperature, setTemperature] = useState('20');
-    const [humidity, setHumidity] = useState('2');
-    const [wind, setWind] = useState('50');
-    const [feelslike, setFeelsLike] = useState('17');
-    //const [icon, setIcon] = useState(cloud);
-    const [currentIcon, setCurrentIcon] = useState('https://openweathermap.org/img/wn/10d@2x.png')
+    const [city, setCity] = useState('');
+    const [weatherDescription, setWeatherDescription] = useState('');
+    const [temperature, setTemperature] = useState('');
+    const [humidity, setHumidity] = useState('');
+    const [wind, setWind] = useState('');
+    const [feelslike, setFeelsLike] = useState('');
+    const [currentIcon, setCurrentIcon] = useState('')
 
     const [forecastData, setForecastData] = useState([]);
 
@@ -126,36 +114,36 @@ const CityWeather = ({ locationQuery }) => {
       }, [locationQuery]);
 
 
-      useEffect(() => {
-        const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${locationQuery}&appid=${apiKey}&units=metric`;
-    
-        fetch(apiUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.cod === "200") {
-          // Group the data by day of the week
-          const dailyData = data.list.reduce((result, forecast) => {
-            const date = new Date(forecast.dt_txt);
-            const weekday = date.toLocaleDateString("en-US", { weekday: "long" });
-            
-            if (!result[weekday]) {
-              result[weekday] = forecast;
-            }
-            return result;
-          }, {});
+    useEffect(() => {
+      const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${locationQuery}&appid=${apiKey}&units=metric`;
+  
+      fetch(apiUrl)
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.cod === "200") {
+        // Group the data by day of the week
+        const dailyData = data.list.reduce((result, forecast) => {
+          const date = new Date(forecast.dt_txt);
+          const weekday = date.toLocaleDateString("en-US", { weekday: "long" });
+          
+          if (!result[weekday]) {
+            result[weekday] = forecast;
+          }
+          return result;
+        }, {});
 
-          // Convert the object back to an array
-          const dailyForecastArray = Object.values(dailyData);
+        // Convert the object back to an array
+        const dailyForecastArray = Object.values(dailyData);
 
-          setDailyForecast(dailyForecastArray);
-        } else {
-          console.error("API error: ", data.message);
-        }
-      })
-          .catch((error) => {
-            console.error("Error fetching data:", error);
-          });
-      }, [locationQuery]);
+        setDailyForecast(dailyForecastArray);
+      } else {
+        console.error("API error: ", data.message);
+      }
+    })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    }, [locationQuery]);
       
       
 
@@ -196,10 +184,12 @@ const CityWeather = ({ locationQuery }) => {
                 </div>
             </div>
             <div>
+            
             <Forecast data={forecastData}/>
-            <WeeklyForecast data={dailyForecast} />
+            <DailyForecast data={dailyForecast} />
       
-    </div>
+            </div>
+            
         </>
     );
 };

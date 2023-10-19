@@ -3,11 +3,11 @@ import logo from '../images/logo.png'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Navbar = ({ onLocationQueryChange }) => {
-    const [searchQuery, setSearchQuery] = useState(''); // State for user input
+    const [searchQuery, setSearchQuery] = useState('Islamabad');
 
     const handleSearch = (e) => {
         e.preventDefault();
-        onLocationQueryChange(searchQuery); // Pass the searchQuery to the parent component (App)
+        onLocationQueryChange(searchQuery); 
     };
 
     return (

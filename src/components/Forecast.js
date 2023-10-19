@@ -3,7 +3,7 @@ import React from "react";
 const Forecast = ({ data }) => {
   return (
     <div>
-      <h1 className="mt-5" style={{ margin: '0 auto', textAlign: "center" }}>
+      <h1 className="mt-5" style={{ textAlign: "center", fontWeight: 700 }}>
         TODAY'S FORECAST
       </h1>
       <div className="container mt-5" style={{ overflowX: 'auto' }}>
@@ -40,7 +40,6 @@ const Forecast = ({ data }) => {
                   className="card-image"
                   src={`https://openweathermap.org/img/w/${item.icon}.png`}
                   alt="Weather Icon"
-                  style={{ width: 110 }}
                 />
                 <p className="card-text">{item.temperature} °C</p>
               </div>
