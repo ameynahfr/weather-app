@@ -18,7 +18,7 @@ const Footer = () => {
             <a href="https://www.linkedin.com/in/ameynahfr/" target="_blank" rel="noopener noreferrer">
               <img src={linkedin} alt="LinkedIn" />
             </a>
-            <a href="https://www.instagram.com/ameynah.io/" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
               <img src={instagram} alt="Instagram" />
             </a>
           </div>
